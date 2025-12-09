@@ -21,8 +21,9 @@ class AudaciousStats : GeneralPlugin {
     public:
         static const PluginPreferences prefs;
         static const PreferencesWidget widgets[];
+        static const char * const defaults[];
         static const char about[];
-
+        
         static constexpr PluginInfo info = {
             N_("Audacious Stats"),
             N_("audaciousStats"),
@@ -68,6 +69,12 @@ const PreferencesWidget AudaciousStats::widgets[] = {
         {0, 1000, 1, N_("times")}
     )
 };
+
+const char * const AudaciousStats::defaults[] = {
+    "min_song_duration", "20",
+    "delete_entries_after_days", "180",
+    "dont_delete_if_played_more_than", "10",
+nullptr};
 
 const PluginPreferences AudaciousStats::prefs = {{widgets}};
 

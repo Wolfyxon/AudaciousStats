@@ -3,6 +3,7 @@
 AudaciousStats aud_plugin_instance;
 
 bool AudaciousStats::init() {
+    aud_config_set_defaults(CONF_SECTION, defaults);
     hook_associate("playback begin", _playing, this);
 
     return true;
@@ -14,8 +15,12 @@ void AudaciousStats::cleanup() {
 
 void AudaciousStats::_playing(void* data, void* user) {
     SongData song = getCurrentSong();
-    
+    int minSongDuration = aud_get_int(CONF_SECTION, "min_song_duration");
+
     if(!song.valid)
+        return;
+
+    if(song.duration / 1000 < minSongDuration)
         return;
 
     printSongData(&song);
