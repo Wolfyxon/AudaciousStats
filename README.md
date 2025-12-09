@@ -23,4 +23,5 @@ The stats file is stored at:
 3. Compile the plugin: `make`
 4. Install the compiled plugin `sudo cp AudaciousStats.so /usr/lib/audacious/General/AudaciousStats.so`
 5. Delete this project to save space (optional)
-6. 
+6. In Audacious, go to **Services** > **Plugins** > **General**
+7. Enable *Audacious Stats*
