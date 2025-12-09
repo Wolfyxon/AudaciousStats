@@ -6,6 +6,20 @@ bool AudaciousStats::init() {
     aud_config_set_defaults(CONF_SECTION, defaults);
     hook_associate("playback begin", _playing, this);
 
+    try {
+        StatFile stats = getStats();
+
+        stats.cleanup({
+            .deleteEntriesAfterDays = aud_get_int(CONF_SECTION, "delete_entries_after_days"),
+            .dontDeleteIfPlayedMoreThan = aud_get_int(CONF_SECTION, "dont_delete_if_played_more_than")
+        });
+    } catch(Json::Exception e) {
+        char err[256];
+
+        snprintf(err, sizeof(err), "Stats JSON error: ", e.what());
+        aud_ui_show_error(err);
+    }
+
     return true;
 }
 

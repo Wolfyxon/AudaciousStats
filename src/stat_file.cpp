@@ -78,3 +78,7 @@ void StatFile::addSong(SongData songData) {
     songs.append(song);
     jsonRoot["songs"] = songs;
 }
+
+void cleanup(StatFileCleanupConfig config) {
+    // TODO
+}

@@ -23,6 +23,11 @@ Example stats JSON
 
 */
 
+typedef struct {
+    int deleteEntriesAfterDays;
+    int dontDeleteIfPlayedMoreThan;
+} StatFileCleanupConfig;
+
 class StatFile {
     public:
         StatFile(const char* path);
@@ -30,6 +35,7 @@ class StatFile {
 
         void save();
         void songPlayed(SongData songData);
+        void cleanup(StatFileCleanupConfig config);
     private:
         std::fstream file;
         Json::Value jsonRoot;
