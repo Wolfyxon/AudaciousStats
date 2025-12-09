@@ -71,7 +71,7 @@ const PreferencesWidget AudaciousStats::widgets[] = {
 };
 
 const char * const AudaciousStats::defaults[] = {
-    "min_song_duration", "20",
+    "min_song_duration", "15",
     "delete_entries_after_days", "180",
     "dont_delete_if_played_more_than", "10",
 nullptr};
