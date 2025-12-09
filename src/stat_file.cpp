@@ -43,13 +43,15 @@ void StatFile::formatData() {
 
 void StatFile::songPlayed(SongData songData) {
     Json::Value songs = jsonRoot["songs"];
-
+    
     for(int i = 0; i < songs.size(); i++) {
         Json::Value songJson = songs[i];
         SongData song = songFromJson(songJson);
 
         if(songsEqual(&songData, &song)) {
             jsonIncrement(songJson, "totalPlays", 1);
+            songJson["lastPlay"] = std::time(NULL);
+            
             songs[i] = songJson;
             jsonRoot["songs"] = songs;
 
@@ -63,8 +65,11 @@ void StatFile::songPlayed(SongData songData) {
 void StatFile::addSong(SongData songData) {
     Json::Value songs = jsonRoot["songs"];
     Json::Value song;
+    std::time_t now = std::time(NULL);
 
     song["path"] = Json::String(songData.filePath);
+    song["lastPlay"] = Json::Int(now);
+    song["firstPlay"] = Json::Int(now);
     song["totalPlays"] = 1;
 
     jsonSetStrIfNotEmpty(&song, "title", songData.title);
