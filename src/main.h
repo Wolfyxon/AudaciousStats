@@ -23,7 +23,7 @@ class AudaciousRank : GeneralPlugin {
 
         static constexpr PluginInfo info = {
             N_("Audacious Stats"),
-            N_("idk"), // TODO: figure out what this is
+            N_("audaciousStats"),
             nullptr,
             &prefs
         };
