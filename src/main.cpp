@@ -13,8 +13,6 @@ void AudaciousRank::cleanup() {
 }
 
 void AudaciousRank::_playing(void* data, void* user) {
-    printf("playing \n");
-
     StatFile stats = getStats();
     stats.songPlayed(AudaciousRank::getCurrentFilename());
 
