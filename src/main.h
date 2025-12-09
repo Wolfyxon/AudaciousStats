@@ -44,9 +44,7 @@ class AudaciousRank : GeneralPlugin {
 
 // Change later
 const PreferencesWidget AudaciousRank::widgets[] = {
-    WidgetLabel (N_("<b>Hello there</b>")),
-    WidgetCheck (N_("GENERAL KENOBI"),
-    WidgetBool ("some_setting_probably", "also_setting_idk"))
+    WidgetLabel (N_("<b>Audacious Stats settings</b>"))
 };
 
 const PluginPreferences AudaciousRank::prefs = {{widgets}};
