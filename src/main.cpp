@@ -13,8 +13,15 @@ void AudaciousRank::cleanup() {
 }
 
 void AudaciousRank::_playing(void* data, void* user) {
+    SongData song = getCurrentSong();
+    
+    if(!song.valid)
+        return;
+
+    printSongData(&song);
+
     StatFile stats = getStats();
-    stats.songPlayed(AudaciousRank::getCurrentFilename());
+    stats.songPlayed(song);
 
     stats.save();
 }
@@ -47,4 +54,35 @@ const char* AudaciousRank::getCurrentFilename() {
     String fileUri = pl.entry_filename(pos);
 
     return uri_to_filename(fileUri);
+}
+
+SongData AudaciousRank::getCurrentSong() {
+    Playlist pl = Playlist::active_playlist();
+    int pos = pl.get_position();
+
+    if(pos == -1) {
+        return {
+            .valid = false
+        };
+    }
+
+    String metaError;
+
+    Tuple meta = pl.entry_tuple(pos, Playlist::GetMode::Wait, &metaError);
+    meta.generate_fallbacks();
+
+    if(!meta.valid()) {
+        printf("Invalid metadata \n");
+        return {
+            .valid = false
+        };
+    }
+
+    return {
+        .valid = true,
+        .title = meta.get_str(Tuple::Title),
+        .artist = meta.get_str(Tuple::Artist),
+        .filePath = String(uri_to_filename(pl.entry_filename(pos))),
+        .duration = meta.get_int(Tuple::Length)
+    };
 }

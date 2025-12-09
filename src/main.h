@@ -39,6 +39,7 @@ class AudaciousRank : GeneralPlugin {
 
         static String getStatFilePath();
         static StatFile getStats();
+        static SongData getCurrentSong();
         static const char* getCurrentFilename();
 };
 

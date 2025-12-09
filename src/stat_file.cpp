@@ -41,36 +41,35 @@ void StatFile::formatData() {
     jsonRoot["songs"] = Json::Value(Json::arrayValue);
 }
 
-void StatFile::songPlayed(const char* path) {
+void StatFile::songPlayed(SongData songData) {
     Json::Value songs = jsonRoot["songs"];
 
-    // Song exists
     for(int i = 0; i < songs.size(); i++) {
-        Json::Value song = songs[i];
+        Json::Value songJson = songs[i];
+        SongData song = songFromJson(songJson);
 
-        if(song["path"].asString() == Json::String(path)) {
-            jsonIncrement(song, "totalPlays", 1);
-            songs[i] = song;
+        if(songsEqual(&songData, &song)) {
+            jsonIncrement(songJson, "totalPlays", 1);
+            songs[i] = songJson;
             jsonRoot["songs"] = songs;
 
             return;
         }
     }
 
-    // Song doesn't exist
-    Json::Value song;
-
-    song["path"] = path;
-    song["totalPlays"] = 1;
-
-    songs.append(song);
-    jsonRoot["songs"] = songs;
+    addSong(songData);
 }
 
-void jsonIncrement(Json::Value parent, const char* keyName, int offset) {
-    if(parent.isMember(Json::String(keyName))) {
-        parent[keyName] = parent[keyName].asInt() + offset;
-    } else {
-        parent[keyName] = offset;
-    }
+void StatFile::addSong(SongData songData) {
+    Json::Value songs = jsonRoot["songs"];
+    Json::Value song;
+
+    song["path"] = Json::String(songData.filePath);
+    song["totalPlays"] = 1;
+
+    jsonSetStrIfNotEmpty(&song, "title", songData.title);
+    jsonSetStrIfNotEmpty(&song, "artist", songData.artist);
+    
+    songs.append(song);
+    jsonRoot["songs"] = songs;
 }
