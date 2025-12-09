@@ -1,18 +1,18 @@
 #include "main.h"
 
-AudaciousRank aud_plugin_instance;
+AudaciousStats aud_plugin_instance;
 
-bool AudaciousRank::init() {
+bool AudaciousStats::init() {
     hook_associate("playback begin", _playing, this);
 
     return true;
 }
 
-void AudaciousRank::cleanup() {
+void AudaciousStats::cleanup() {
     
 }
 
-void AudaciousRank::_playing(void* data, void* user) {
+void AudaciousStats::_playing(void* data, void* user) {
     SongData song = getCurrentSong();
     
     if(!song.valid)
@@ -26,7 +26,7 @@ void AudaciousRank::_playing(void* data, void* user) {
     stats.save();
 }
 
-String AudaciousRank::getStatFilePath() {
+String AudaciousStats::getStatFilePath() {
     const char* userPath = aud_get_path(AudPath::UserDir);
     const char* fileName = "/stats.json";
 
@@ -39,11 +39,11 @@ String AudaciousRank::getStatFilePath() {
     return String(res);
 }
 
-StatFile AudaciousRank::getStats() {
+StatFile AudaciousStats::getStats() {
     return StatFile(getStatFilePath());
 }
 
-const char* AudaciousRank::getCurrentFilename() {
+const char* AudaciousStats::getCurrentFilename() {
     Playlist pl = Playlist::active_playlist();
     
     int pos = pl.get_position();
@@ -56,7 +56,7 @@ const char* AudaciousRank::getCurrentFilename() {
     return uri_to_filename(fileUri);
 }
 
-SongData AudaciousRank::getCurrentSong() {
+SongData AudaciousStats::getCurrentSong() {
     Playlist pl = Playlist::active_playlist();
     int pos = pl.get_position();
 

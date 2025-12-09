@@ -16,7 +16,7 @@
 #include "util.h"
 #include "stat_file.h"
 
-class AudaciousRank : GeneralPlugin {
+class AudaciousStats : GeneralPlugin {
     public:
         static const PluginPreferences prefs;
         static const PreferencesWidget widgets[];
@@ -29,7 +29,7 @@ class AudaciousRank : GeneralPlugin {
             &prefs
         };
         
-        constexpr AudaciousRank() : GeneralPlugin (info, false) {};
+        constexpr AudaciousStats() : GeneralPlugin (info, false) {};
 
         bool init();
         void cleanup();
@@ -44,13 +44,13 @@ class AudaciousRank : GeneralPlugin {
 };
 
 // Change later
-const PreferencesWidget AudaciousRank::widgets[] = {
+const PreferencesWidget AudaciousStats::widgets[] = {
     WidgetLabel (N_("<b>Audacious Stats settings</b>"))
 };
 
-const PluginPreferences AudaciousRank::prefs = {{widgets}};
+const PluginPreferences AudaciousStats::prefs = {{widgets}};
 
-const char AudaciousRank::about[] = N_(
+const char AudaciousStats::about[] = N_(
     "Audacious Stats\n"
     "by Wolfyxon\n"
     "\n"
