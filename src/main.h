@@ -20,11 +20,12 @@ class AudaciousRank : GeneralPlugin {
     public:
         static const PluginPreferences prefs;
         static const PreferencesWidget widgets[];
+        static const char about[];
 
         static constexpr PluginInfo info = {
             N_("Audacious Stats"),
             N_("audaciousStats"),
-            nullptr,
+            about,
             &prefs
         };
         
@@ -49,3 +50,14 @@ const PreferencesWidget AudaciousRank::widgets[] = {
 };
 
 const PluginPreferences AudaciousRank::prefs = {{widgets}};
+
+const char AudaciousRank::about[] = N_(
+    "Audacious Stats\n"
+    "by Wolfyxon\n"
+    "\n"
+    "This plugins tracks the amount of plays of your songs to determine what you listen to the most.\n"
+    "This plugin is under development and currently there's no graphical interface. For now you have to view the stats JSON file. \n"
+    "\n"
+    "\nSource code & bug reports: \n"
+    "https://github.com/Wolfyxon/AudaciousStats"
+);
