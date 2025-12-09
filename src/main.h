@@ -15,6 +15,7 @@
 
 #include "util.h"
 #include "stat_file.h"
+#include "config.h"
 
 class AudaciousStats : GeneralPlugin {
     public:
@@ -43,9 +44,29 @@ class AudaciousStats : GeneralPlugin {
         static const char* getCurrentFilename();
 };
 
-// Change later
 const PreferencesWidget AudaciousStats::widgets[] = {
-    WidgetLabel (N_("<b>Audacious Stats settings</b>"))
+    WidgetLabel (N_("<b>Audacious Stats settings</b>")),
+    WidgetLabel (N_("NOTE: These are placeholders and don't work yet")),
+    
+    WidgetLabel (N_("<b>Garbage collection:</b>")),
+
+    WidgetSpin(
+        N_("Min song duration:"),
+        WidgetInt(CONF_SECTION, CONF_MIN_SONG_DURATION),
+        {0, 5000, 1, N_("s")}
+    ),
+
+    WidgetSpin(
+        N_("Delete entries after:"),
+        WidgetInt(CONF_SECTION, CONF_DELETE_AFTER_DAYS),
+        {0, 36500, 1, N_("days")}
+    ),
+
+    WidgetSpin(
+        N_("Don't delete if played over:"),
+        WidgetInt(CONF_SECTION, CONF_DELETE_MAX_PLAYS),
+        {0, 1000, 1, N_("times")}
+    )
 };
 
 const PluginPreferences AudaciousStats::prefs = {{widgets}};
