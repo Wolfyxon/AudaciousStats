@@ -26,11 +26,11 @@ SongData songFromJson(Json::Value json) {
     };
 }
 
-void jsonIncrement(Json::Value parent, const char* keyName, int offset) {
-    if(parent.isMember(Json::String(keyName))) {
-        parent[keyName] = parent[keyName].asInt() + offset;
+void jsonIncrement(Json::Value* parent, const char* keyName, int offset) {
+    if(parent->isMember(Json::String(keyName))) {
+        (*parent)[keyName] = (*parent)[keyName].asInt() + offset;
     } else {
-        parent[keyName] = offset;
+        (*parent)[keyName] = offset;
     }
 }
 

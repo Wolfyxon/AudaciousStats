@@ -15,7 +15,7 @@ typedef struct {
 
 bool songsEqual(SongData* a, SongData* b);
 SongData songFromJson(Json::Value json);
-void jsonIncrement(Json::Value parent, const char* keyName, int offset);
+void jsonIncrement(Json::Value* parent, const char* keyName, int offset);
 bool strempty(const char* str);
 const char* jsonGetStrOrEmpty(Json::Value value, const char* key);
 String jsonGetStringOrEmpty(Json::Value value, const char* key);
