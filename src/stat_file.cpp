@@ -49,7 +49,7 @@ void StatFile::songPlayed(const char* path) {
         Json::Value song = songs[i];
 
         if(song["path"].asString() == Json::String(path)) {
-            song["totalPlays"] = song["totalPlays"].asInt() + 1;
+            jsonIncrement(song, "totalPlays", 1);
             songs[i] = song;
             jsonRoot["songs"] = songs;
 
@@ -65,4 +65,12 @@ void StatFile::songPlayed(const char* path) {
 
     songs.append(song);
     jsonRoot["songs"] = songs;
+}
+
+void jsonIncrement(Json::Value parent, const char* keyName, int offset) {
+    if(parent.isMember(Json::String(keyName))) {
+        parent[keyName] = parent[keyName].asInt() + offset;
+    } else {
+        parent[keyName] = offset;
+    }
 }

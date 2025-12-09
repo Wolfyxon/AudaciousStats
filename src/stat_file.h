@@ -19,6 +19,8 @@ Example stats JSON
 
 */
 
+void jsonIncrement(Json::Value parent, const char* keyName, int offset);
+
 class StatFile {
     public:
         StatFile(const char* path);
