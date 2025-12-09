@@ -8,6 +8,12 @@ The development may be slow due to lack of documentation of the Audacious plugin
 
 Features
 - [x] Tracking & saving the stats
+- [ ] More detailed stats
+  - [ ] Plays last month
+  - [ ] Last play date
+- [ ] Automatic cleanup
+  - [ ] Not including short audio
+  - [ ] Deleting stats of songs that were played long time ago only for a few times
 - [ ] Graphical interface to view the stats
 
 The stats file is stored at:
