@@ -79,6 +79,22 @@ void StatFile::addSong(SongData songData) {
     jsonRoot["songs"] = songs;
 }
 
-void cleanup(StatFileCleanupConfig config) {
-    // TODO
+void StatFile::cleanup(StatFileCleanupConfig config) {
+    std::time_t now = std::time(NULL);
+    Json::Value songs = jsonRoot["songs"];
+    Json::Value newSongs = Json::arrayValue;
+
+    for(int i = 0; i < songs.size(); i++) {
+        Json::Value song = songs[i];
+
+        int playCount = song["totalPlays"].asInt();
+        time_t timeDiff = now - song["lastPlay"].asInt();
+        time_t daysDiff = ((timeDiff / 60) / 60) / 24;
+        
+        if(config.deleteEntriesAfterDays > daysDiff || playCount > config.dontDeleteIfPlayedMoreThan) {
+            newSongs.append(song);
+        }
+    }
+
+    jsonRoot["songs"] = newSongs;
 }

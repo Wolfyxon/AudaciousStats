@@ -16,7 +16,7 @@ bool AudaciousStats::init() {
     } catch(Json::Exception e) {
         char err[256];
 
-        snprintf(err, sizeof(err), "Stats JSON error: ", e.what());
+        snprintf(err, sizeof(err), "Stat cleanup failed: ", e.what());
         aud_ui_show_error(err);
     }
 
@@ -41,8 +41,6 @@ void AudaciousStats::_playing(void* data, void* user) {
 
     StatFile stats = getStats();
     stats.songPlayed(song);
-
-    stats.save();
 }
 
 String AudaciousStats::getStatFilePath() {
