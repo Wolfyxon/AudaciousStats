@@ -61,7 +61,7 @@ const PreferencesWidget AudaciousStats::widgets[] = {
     ),
 
     WidgetSpin(
-        N_("Delete entries after:"),
+        N_("Delete entries after not playing for:"),
         WidgetInt(CONF_SECTION, CONF_DELETE_AFTER_DAYS),
         {0, 36500, 1, N_("days")}
     ),
