@@ -17,6 +17,10 @@
 #include "stat_file.h"
 #include "config.h"
 
+#ifndef VERSION
+    #define VERSION "0.0"
+#endif
+
 class AudaciousStats : GeneralPlugin {
     public:
         static const PluginPreferences prefs;
@@ -79,7 +83,7 @@ nullptr};
 const PluginPreferences AudaciousStats::prefs = {{widgets}};
 
 const char AudaciousStats::about[] = N_(
-    "Audacious Stats\n"
+    "Audacious Stats v. " VERSION "\n"
     "by Wolfyxon\n"
     "\n"
     "This plugins tracks the amount of plays of your songs to determine what you listen to the most.\n"
