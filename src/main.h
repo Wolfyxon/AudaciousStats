@@ -85,10 +85,10 @@ const PreferencesWidget AudaciousStats::widgets[] = {
 };
 
 const char * const AudaciousStats::defaults[] = {
-    "min_song_duration", "15",
-    "delete_entries_after_days", "180",
-    "delete_missing_files_after_days", "90",
-    "dont_delete_if_played_more_than", "10",
+    CONF_MIN_SONG_DURATION, "15",
+    CONF_DELETE_AFTER_DAYS, "180",
+    CONF_DELETE_MISSING_AFTER_DAYS, "90",
+    CONF_DELETE_MAX_PLAYS, "10",
 nullptr};
 
 const PluginPreferences AudaciousStats::prefs = {{widgets}};

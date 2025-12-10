@@ -13,14 +13,15 @@ typedef struct {
     String filePath;
     int duration; // miliseconds
 } SongData;
-
-bool fileExists(const char* path);
-bool songsEqual(SongData* a, SongData* b);
-SongData songFromJson(Json::Value json);
-void jsonIncrement(Json::Value* parent, const char* keyName, int offset);
 bool strempty(const char* str);
+const char* strc(String str);
+bool fileExists(const char* path);
+
+SongData songFromJson(Json::Value json);
+bool songsEqual(SongData* a, SongData* b);
+void printSongData(SongData* songData);
+
+void jsonIncrement(Json::Value* parent, const char* keyName, int offset);
 const char* jsonGetStrOrEmpty(Json::Value value, const char* key);
 String jsonGetStringOrEmpty(Json::Value value, const char* key);
 void jsonSetStrIfNotEmpty(Json::Value* value, const char* key, const char* str);
-const char* strc(String str);
-void printSongData(SongData* songData);

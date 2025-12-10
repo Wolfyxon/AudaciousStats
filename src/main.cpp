@@ -10,9 +10,9 @@ bool AudaciousStats::init() {
         StatFile stats = getStats();
 
         stats.cleanup({
-            .deleteEntriesAfterDays = aud_get_int(CONF_SECTION, "delete_entries_after_days"),
-            .deleteMissingAfterDays = aud_get_int(CONF_SECTION, "delete_missing_files_after_days"),
-            .dontDeleteIfPlayedMoreThan = aud_get_int(CONF_SECTION, "dont_delete_if_played_more_than")
+            .deleteEntriesAfterDays = aud_get_int(CONF_SECTION, CONF_DELETE_AFTER_DAYS),
+            .deleteMissingAfterDays = aud_get_int(CONF_SECTION, CONF_DELETE_MISSING_AFTER_DAYS),
+            .dontDeleteIfPlayedMoreThan = aud_get_int(CONF_SECTION, CONF_DELETE_MAX_PLAYS)
         });
     } catch(Json::Exception e) {
         char err[256];
@@ -30,14 +30,14 @@ void AudaciousStats::cleanup() {
 
 void AudaciousStats::_playing(void* data, void* user) {
     SongData song = getCurrentSong();
-    int minSongDuration = aud_get_int(CONF_SECTION, "min_song_duration");
+    int minSongDuration = aud_get_int(CONF_SECTION, CONF_MIN_SONG_DURATION);
 
     if(!song.valid)
         return;
 
     if(song.duration / 1000 < minSongDuration)
         return;
-    
+
     StatFile stats = getStats();
     stats.songPlayed(song);
 }

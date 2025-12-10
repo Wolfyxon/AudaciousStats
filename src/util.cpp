@@ -1,19 +1,16 @@
 #include "util.h"
 
+const char* strc(String str) {
+    return (const char*) str;
+}
+
+bool strempty(const char* str) {
+    return strlen(str) == 0;
+}
+
 bool fileExists(const char* path) {
     struct stat statStruct;
     return stat(path, &statStruct) == 0;
-}
-
-bool songsEqual(SongData* a, SongData* b) {
-    return (
-        a->filePath == b->filePath ||
-        (
-            !strempty(a->title) && !strempty(b->title) &&
-            !strempty(a->artist) && !strempty(b->artist) &&
-            a->title == b->title && a->artist == b->artist
-        )
-    );
 }
 
 SongData songFromJson(Json::Value json) {
@@ -31,16 +28,31 @@ SongData songFromJson(Json::Value json) {
     };
 }
 
+bool songsEqual(SongData* a, SongData* b) {
+    return (
+        a->filePath == b->filePath ||
+        (
+            !strempty(a->title) && !strempty(b->title) &&
+            !strempty(a->artist) && !strempty(b->artist) &&
+            a->title == b->title && a->artist == b->artist
+        )
+    );
+}
+
+void printSongData(SongData* songData) {
+    if(!songData->valid) {
+        printf("Invalid song! \n");
+    }
+
+    printf("Title: '%s' Artist: '%s' Path: '%s'\n", strc(songData->title), strc(songData->artist), strc(songData->filePath));
+}
+
 void jsonIncrement(Json::Value* parent, const char* keyName, int offset) {
     if(parent->isMember(Json::String(keyName))) {
         (*parent)[keyName] = (*parent)[keyName].asInt() + offset;
     } else {
         (*parent)[keyName] = offset;
     }
-}
-
-bool strempty(const char* str) {
-    return strlen(str) == 0;
 }
 
 const char* jsonGetStrOrEmpty(Json::Value value, const char* key) {
@@ -61,16 +73,3 @@ void jsonSetStrIfNotEmpty(Json::Value* value, const char* key, const char* str) 
         (*value)[key] = str;
     }
 }
-
-const char* strc(String str) {
-    return (const char*) str;
-}
-
-void printSongData(SongData* songData) {
-    if(!songData->valid) {
-        printf("Invalid song! \n");
-    }
-
-    printf("Title: '%s' Artist: '%s' Path: '%s'\n", strc(songData->title), strc(songData->artist), strc(songData->filePath));
-}
-
