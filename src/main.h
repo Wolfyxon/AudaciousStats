@@ -51,8 +51,7 @@ class AudaciousStats : GeneralPlugin {
 
 const PreferencesWidget AudaciousStats::widgets[] = {
     WidgetLabel (N_("<b>Audacious Stats settings</b>")),
-    WidgetLabel (N_("NOTE: These are placeholders and don't work yet")),
-    
+        
     WidgetLabel (N_("<b>Garbage collection:</b>")),
 
     WidgetSpin(
