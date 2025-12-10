@@ -11,7 +11,7 @@ build:
 	g++ $(CFLAGS) $(SOURCE) $(LIBS) -o $(SO_NAME)
 
 clean:
-	rm -f $(SO_NAME)
+	rm -f $(SO_NAME) *.fuse_hidden*
 
 run: build
 	audacious -H
