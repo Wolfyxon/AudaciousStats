@@ -4,7 +4,7 @@ SO_NAME := AudaciousStats.so
 VERSION := 1.0
 
 SOURCE := src/*
-CFLAGS := -fPIC -shared -DVERSION="\$(VERSION)\"
+CFLAGS := -fPIC -shared -DVERSION=\"$(VERSION)\"
 LIBS := /usr/lib/libjsoncpp.so
 
 build:
