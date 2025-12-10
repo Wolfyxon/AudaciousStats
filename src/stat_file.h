@@ -37,10 +37,12 @@ class StatFile {
         void songPlayed(SongData songData);
         void cleanup(StatFileCleanupConfig config);
     private:
+        String path;
         std::fstream file;
         Json::Value jsonRoot;
+        bool writeMode = false;
 
         void addSong(SongData song);
-        void create(const char* path);
+        void create();
         void formatData();
 };

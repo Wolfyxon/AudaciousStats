@@ -3,10 +3,11 @@
 // TODO: File and parse error handling
 
 StatFile::StatFile(const char* path) {    
+    this->path = String(path);
     file.open(path, std::ios::binary | std::ios::in | std::ios::out);
 
     if(!file) {
-        create(path);
+        create();
     } else {
         file >> jsonRoot;
     }
@@ -17,19 +18,25 @@ StatFile::~StatFile() {
     file.close();
 }
 
-void StatFile::create(const char* path) {
-    file.open(path, std::ios::binary | std::ios::out | std::ios::trunc);
-    
-    if(!file) {
-        printf("Unable to create %s \n", path);
-        return;
-    }
-
+void StatFile::create() {
     formatData();
     save();
 }
 
 void StatFile::save() {
+    if(!writeMode) {
+        if(file.is_open()) {
+            file.close();
+        }
+
+        file.open(path, std::ios::binary | std::ios::out | std::ios::trunc);
+    }
+    
+    if(!file) {
+        printf("Unable to save %s \n", (const char*) path);
+        return;
+    }
+
     file.seekp(0);
     file << jsonRoot.toStyledString();
 }
