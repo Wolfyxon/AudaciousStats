@@ -70,7 +70,12 @@ const PreferencesWidget AudaciousStats::widgets[] = {
         N_("Don't delete if played over:"),
         WidgetInt(CONF_SECTION, CONF_DELETE_MAX_PLAYS),
         {0, 1000, 1, N_("times")}
-    )
+    ),
+
+    WidgetLabel (N_(
+        "The stats file is located at:\n"
+        "~/.config/audacious/stats.json"
+    ))
 };
 
 const char * const AudaciousStats::defaults[] = {
