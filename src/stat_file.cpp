@@ -55,10 +55,13 @@ void StatFile::songPlayed(SongData songData) {
         Json::Value songJson = songs[i];
         SongData song = songFromJson(songJson);
 
+        if(!song.valid)
+            continue;
+
         if(songsEqual(&songData, &song)) {
             fillEntry(&songJson, &songData);
             jsonIncrement(&songJson, "totalPlays", 1);
-            
+
             songJson["lastPlay"] = std::time(NULL);
             
             songs[i] = songJson;
