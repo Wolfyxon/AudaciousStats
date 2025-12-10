@@ -10,10 +10,10 @@ Features
 - [x] Tracking & saving the stats
 - [ ] More detailed stats
   - [ ] Plays last month
-  - [ ] Last play date
-- [ ] Automatic cleanup
-  - [ ] Not including short audio
-  - [ ] Deleting stats of songs that were played long time ago only for a few times
+  - [x] Last play date
+- [x] Automatic cleanup
+  - [x] Not including short audio
+  - [x] Deleting stats of songs that were played long time ago only for a few times
 - [ ] Graphical interface to view the stats
 
 The stats file is stored at:
