@@ -56,7 +56,9 @@ void StatFile::songPlayed(SongData songData) {
         SongData song = songFromJson(songJson);
 
         if(songsEqual(&songData, &song)) {
+            fillEntry(&songJson, &songData);
             jsonIncrement(&songJson, "totalPlays", 1);
+            
             songJson["lastPlay"] = std::time(NULL);
             
             songs[i] = songJson;
@@ -69,19 +71,25 @@ void StatFile::songPlayed(SongData songData) {
     addSong(songData);
 }
 
+void StatFile::fillEntry(Json::Value* json, SongData* song) {
+    jsonSetStrIfNotEmpty(json, "title", song->title);
+    jsonSetStrIfNotEmpty(json, "artist", song->artist);
+    jsonSetStrIfNotEmpty(json, "path", song->filePath);
+}
+
 void StatFile::addSong(SongData songData) {
     Json::Value songs = jsonRoot["songs"];
     Json::Value song;
     std::time_t now = std::time(NULL);
 
-    song["path"] = Json::String(songData.filePath);
+    fillEntry(&song, &songData);
+    
     song["lastPlay"] = Json::Int(now);
     song["firstPlay"] = Json::Int(now);
     song["totalPlays"] = 1;
 
-    jsonSetStrIfNotEmpty(&song, "title", songData.title);
-    jsonSetStrIfNotEmpty(&song, "artist", songData.artist);
-    
+    fillEntry(&song, &songData);
+
     songs.append(song);
     jsonRoot["songs"] = songs;
 }

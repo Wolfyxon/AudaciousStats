@@ -43,6 +43,7 @@ class StatFile {
         bool writeMode = false;
 
         void addSong(SongData song);
+        void fillEntry(Json::Value* json, SongData* song);
         void create();
         void formatData();
 };
