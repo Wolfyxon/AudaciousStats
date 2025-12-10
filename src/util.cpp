@@ -1,5 +1,10 @@
 #include "util.h"
 
+bool fileExists(const char* path) {
+    struct stat statStruct;
+    return stat(path, &statStruct) == 0;
+}
+
 bool songsEqual(SongData* a, SongData* b) {
     return (
         a->filePath == b->filePath ||

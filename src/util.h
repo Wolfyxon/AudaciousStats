@@ -4,6 +4,7 @@
 #include <libaudcore/tuple.h>
 #include <json/json.h>
 #include <string.h>
+#include <sys/stat.h>
 
 typedef struct {
     bool valid;
@@ -13,6 +14,7 @@ typedef struct {
     int duration; // miliseconds
 } SongData;
 
+bool fileExists(const char* path);
 bool songsEqual(SongData* a, SongData* b);
 SongData songFromJson(Json::Value json);
 void jsonIncrement(Json::Value* parent, const char* keyName, int offset);
