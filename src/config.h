@@ -4,6 +4,6 @@
 
 conf_str_t CONF_SECTION = "stats";
 conf_str_t CONF_MIN_SONG_DURATION = "min_song_duration";
-conf_str_t CONF_DELETE_AFTER_DAYS = "delete_entries_after_days";
+conf_str_t CONF_DELETE_AFTER_DAYS = "delete_after_not_playing_for_days";
 conf_str_t CONF_DELETE_MISSING_AFTER_DAYS = "delete_missing_files_after_days";
 conf_str_t CONF_DELETE_MAX_PLAYS = "dont_delete_if_played_more_than";
