@@ -67,6 +67,12 @@ const PreferencesWidget AudaciousStats::widgets[] = {
     ),
 
     WidgetSpin(
+        N_("Delete entries with missing files after:"),
+        WidgetInt(CONF_SECTION, CONF_DELETE_MISSING_AFTER_DAYS),
+        {0, 36500, 0, N_("days")}
+    ),
+
+    WidgetSpin(
         N_("Don't delete if played over:"),
         WidgetInt(CONF_SECTION, CONF_DELETE_MAX_PLAYS),
         {0, 1000, 1, N_("times")}
@@ -81,6 +87,7 @@ const PreferencesWidget AudaciousStats::widgets[] = {
 const char * const AudaciousStats::defaults[] = {
     "min_song_duration", "15",
     "delete_entries_after_days", "180",
+    "delete_missing_files_after_days", "90",
     "dont_delete_if_played_more_than", "10",
 nullptr};
 

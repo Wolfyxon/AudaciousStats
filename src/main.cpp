@@ -11,6 +11,7 @@ bool AudaciousStats::init() {
 
         stats.cleanup({
             .deleteEntriesAfterDays = aud_get_int(CONF_SECTION, "delete_entries_after_days"),
+            .deleteMissingAfterDays = aud_get_int(CONF_SECTION, "delete_missing_files_after_days"),
             .dontDeleteIfPlayedMoreThan = aud_get_int(CONF_SECTION, "dont_delete_if_played_more_than")
         });
     } catch(Json::Exception e) {

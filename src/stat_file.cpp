@@ -108,8 +108,17 @@ void StatFile::cleanup(StatFileCleanupConfig config) {
         int playCount = song["totalPlays"].asInt();
         time_t timeDiff = now - song["lastPlay"].asInt();
         time_t daysDiff = ((timeDiff / 60) / 60) / 24;
-        
-        if(config.deleteEntriesAfterDays > daysDiff || playCount > config.dontDeleteIfPlayedMoreThan) {
+
+        bool fileMissing = song.isMember("path") && !fileExists(song["path"].asCString());
+        bool playedTooMuchToDelete = playCount > config.dontDeleteIfPlayedMoreThan;
+
+        if(
+            playedTooMuchToDelete ||
+            (
+                config.deleteEntriesAfterDays > daysDiff &&
+                (!fileMissing || (fileMissing && config.deleteMissingAfterDays > daysDiff)) 
+            )
+        ) {
             newSongs.append(song);
         }
     }

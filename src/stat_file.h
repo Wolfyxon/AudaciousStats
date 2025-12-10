@@ -25,6 +25,7 @@ Example stats JSON
 
 typedef struct {
     int deleteEntriesAfterDays;
+    int deleteMissingAfterDays;
     int dontDeleteIfPlayedMoreThan;
 } StatFileCleanupConfig;
 
