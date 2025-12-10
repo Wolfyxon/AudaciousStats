@@ -1,6 +1,6 @@
 # Audacious Stats
 
-An Audacious plugin for tracking your song plays.
+An [Audacious](https://audacious-media-player.org) plugin for tracking your song plays.
 
 ## Project status
 This is still being worked on.
