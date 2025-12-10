@@ -24,7 +24,7 @@ bool AudaciousStats::init() {
 }
 
 void AudaciousStats::cleanup() {
-    
+    hook_dissociate("playback begin", _playing, this);
 }
 
 void AudaciousStats::_playing(void* data, void* user) {
