@@ -37,9 +37,7 @@ void AudaciousStats::_playing(void* data, void* user) {
 
     if(song.duration / 1000 < minSongDuration)
         return;
-
-    printSongData(&song);
-
+    
     StatFile stats = getStats();
     stats.songPlayed(song);
 }
