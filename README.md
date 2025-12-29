@@ -2,11 +2,7 @@
 
 An [Audacious](https://audacious-media-player.org) plugin for tracking your song plays.
 
-## Project status
-This is still being worked on.
-The development may be slow due to lack of documentation of the Audacious plugin API, which requires me to analyze the Audacious code. 
-
-Features
+## Features
 - [x] Tracking & saving the stats
 - [ ] More detailed stats
   - [ ] Plays last month
@@ -20,6 +16,8 @@ The stats file is stored at:
 ```
 /home/<username>/.config/audacious/stats.json
 ```
+
+The stats can be displayed in a fancy way on [SongWrap](https://wolfyxon.github.io/SongWrap/) ([source code](https://github.com/Wolfyxon/SongWrap))
 
 ## Installation / compiling
 **Note:** Currently only Linux is supported
