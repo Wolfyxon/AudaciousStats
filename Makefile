@@ -5,10 +5,10 @@ VERSION := 1.0
 
 SOURCE := src/*
 CFLAGS := -fPIC -shared -O -DVERSION=\"$(VERSION)\"
-LIBS := /usr/lib/libjsoncpp.so
+STATIC_LIBS := -ljsoncpp
 
 build:
-	g++ $(CFLAGS) $(SOURCE) $(LIBS) -o $(SO_NAME)
+	g++ $(CFLAGS) $(SOURCE) -Wl,-Bstatic $(STATIC_LIBS) -Wl,-Bdynamic -o $(SO_NAME)
 
 clean:
 	rm -f $(SO_NAME) *.fuse_hidden*
