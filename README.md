@@ -19,13 +19,17 @@ The stats file is stored at:
 
 The stats can be displayed in a fancy way on [SongWrap](https://wolfyxon.github.io/SongWrap/) ([source code](https://github.com/Wolfyxon/SongWrap))
 
-## Installation / compiling
+## Installation
 **Note:** Currently only Linux is supported
 
-1. Install the required packages: *audacious*, *jsoncpp*, *g++*, *make*
+### Manual
+1. [Download the latest release](https://github.com/wolfyxon/AudaciousStats/releases/latest) or compile AudaciousStats (explained in the section below)
+2. Copy it to `/usr/lib/audacious/General`: `sudo cp AudaciousStats.so /usr/lib/audacious/General/AudaciousStats.so`
+3. Open Audacious, go to **Services** > **Plugins** > **General**
+4. Enable *Audacious Stats*
+
+## Compiling
+1. Install the required dependencies: *audacious*, *jsoncpp*, *g++*, *make*
 2. Open your terminal in the project's root directory
 3. Compile the plugin: `make`
-4. Install the compiled plugin `sudo cp AudaciousStats.so /usr/lib/audacious/General/AudaciousStats.so`
-5. Delete this project to save space (optional)
-6. In Audacious, go to **Services** > **Plugins** > **General**
-7. Enable *Audacious Stats*
+4. You should see a file named `AudaciousStats.so`, you can now install it
