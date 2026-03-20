@@ -3,6 +3,8 @@
 AudaciousStats aud_plugin_instance;
 
 bool AudaciousStats::init() {
+    printDebug("Init");
+
     aud_config_set_defaults(CONF_SECTION, defaults);
     hook_associate("playback begin", _playing, this);
 
@@ -25,6 +27,7 @@ bool AudaciousStats::init() {
 }
 
 void AudaciousStats::cleanup() {
+    printDebug("Shutting down");
     hook_dissociate("playback begin", _playing, this);
 }
 

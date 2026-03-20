@@ -6,6 +6,11 @@
 #include <string.h>
 #include <sys/stat.h>
 
+#define LOG_PREFIX "[AudaciousStats] "
+
+#define printErr(...) fprintf(stderr, LOG_PREFIX "error: " __VA_ARGS__ "\n")
+#define printDebug(...) printf(LOG_PREFIX __VA_ARGS__ "\n")
+
 typedef struct {
     bool valid;
     String title;
