@@ -92,7 +92,8 @@ SongData AudaciousStats::getCurrentSong() {
     meta.generate_fallbacks();
 
     if(!meta.valid()) {
-        printf("Invalid metadata \n");
+        printErr("Invalid metadata: %s", metaError);
+
         return {
             .valid = false
         };

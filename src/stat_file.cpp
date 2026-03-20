@@ -33,7 +33,7 @@ void StatFile::save() {
     }
     
     if(!file) {
-        printf("Unable to save %s \n", (const char*) path);
+        printErr("Unable to save %s \n", (const char*) path);
         return;
     }
 
