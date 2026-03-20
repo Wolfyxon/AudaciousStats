@@ -7,9 +7,15 @@
 #include <sys/stat.h>
 
 #define LOG_PREFIX "[AudaciousStats] "
+//#define DEBUG
 
 #define printErr(...) fprintf(stderr, LOG_PREFIX "error: " __VA_ARGS__ "\n")
-#define printDebug(...) printf(LOG_PREFIX __VA_ARGS__ "\n")
+
+#ifdef DEBUG
+    #define printDebug(...) printf(LOG_PREFIX __VA_ARGS__ "\n")
+#else
+    #define printDebug(...)
+#endif
 
 typedef struct {
     bool valid;
