@@ -20,6 +20,7 @@ bool AudaciousStats::init() {
         char err[256];
 
         snprintf(err, sizeof(err), "Stat cleanup failed: ", e.what());
+        printErr("%s", err);
         aud_ui_show_error(err);
     }
 
