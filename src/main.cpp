@@ -10,15 +10,18 @@ bool AudaciousStats::init() {
 
     dataCleanup();
 
+    printDebug("Ready");
     return true;
 }
 
 void AudaciousStats::cleanup() {
     printDebug("Shutting down");
     hook_dissociate("playback begin", _playing, this);
+    printDebug("Goodbye");
 }
 
  void AudaciousStats::dataCleanup() {
+    printDebug("Performing cleanup");
     try {
         StatFile stats = getStats();
 
@@ -34,14 +37,19 @@ void AudaciousStats::cleanup() {
         printErr("%s", err);
         aud_ui_show_error(err);
     }
+    printDebug("Cleanup complete");
  }
 
 void AudaciousStats::_playing(void* data, void* user) {
+    printDebug("Song play event");
+
     SongData song = getCurrentSong();
     int minSongDuration = aud_get_int(CONF_SECTION, CONF_MIN_SONG_DURATION);
 
-    if(!song.valid)
+    if(!song.valid) {
+        printDebug("Song is invalid, ignoring");
         return;
+    }
 
     if(song.duration / 1000 < minSongDuration)
         return;
