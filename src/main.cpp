@@ -8,6 +8,17 @@ bool AudaciousStats::init() {
     aud_config_set_defaults(CONF_SECTION, defaults);
     hook_associate("playback begin", _playing, this);
 
+    dataCleanup();
+
+    return true;
+}
+
+void AudaciousStats::cleanup() {
+    printDebug("Shutting down");
+    hook_dissociate("playback begin", _playing, this);
+}
+
+ void AudaciousStats::dataCleanup() {
     try {
         StatFile stats = getStats();
 
@@ -23,14 +34,7 @@ bool AudaciousStats::init() {
         printErr("%s", err);
         aud_ui_show_error(err);
     }
-
-    return true;
-}
-
-void AudaciousStats::cleanup() {
-    printDebug("Shutting down");
-    hook_dissociate("playback begin", _playing, this);
-}
+ }
 
 void AudaciousStats::_playing(void* data, void* user) {
     SongData song = getCurrentSong();

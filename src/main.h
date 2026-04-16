@@ -39,6 +39,7 @@ class AudaciousStats : GeneralPlugin {
 
         bool init();
         void cleanup();
+        void dataCleanup();
 
         static void _loop(void* data);
         static void _playing(void* data, void* user);
