@@ -12,7 +12,7 @@
 #define printErr(...) fprintf(stderr, LOG_PREFIX "error: " __VA_ARGS__); fprintf(stderr, "\n");
 
 #ifdef DEBUG
-    #define printDebug(...) printf(LOG_PREFIX __VA_ARGS__); fprintf(stderr, "\n");
+    #define printDebug(...) printf(LOG_PREFIX __VA_ARGS__); printf("\n");
 #else
     #define printDebug(...)
 #endif
